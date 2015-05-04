@@ -4,8 +4,8 @@ module GeojsonModel
   class GeometryCollection
     include Base
 
-    attribute :type,        String, default: 'GeometryCollection'
-    attribute :coordinates, Array[GeojsonModel::Geometry]
+    attribute :type,       String, default: 'GeometryCollection'
+    attribute :geometries, Array[GeojsonModel::Geometry]
 
     # @return [FeatureCollection]
     def to_feature_collection
