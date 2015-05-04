@@ -9,14 +9,15 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Philippe Dionne"]
   spec.email         = ["dionne.phil@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Geojson as a model.}
+  spec.description   = %q{Geojson as a model.}
+  spec.homepage      = "http://github.com/can-explore/geojson_model"
+  spec.license       = "BSD 3-Clause"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata['allowed_push_host'] = "https://rubygems.org"
   else
     raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
   end
@@ -26,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.9"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "bundler"
+  spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec", "~> 3.2"
 end
