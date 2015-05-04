@@ -37,3 +37,8 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+## License
+
+`geojson_model` is © 2015 Can-Explore and may be freely distributed under the New BSD license. See the `LICENSE.md` file.
+
