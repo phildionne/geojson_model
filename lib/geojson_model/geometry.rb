@@ -6,5 +6,10 @@ module GeojsonModel
 
     attribute :type,        String, default: 'Geometry'
     attribute :coordinates, Array
+
+    # @return [Feature]
+    def to_feature
+      Feature.new(geometry: self)
+    end
   end
 end
