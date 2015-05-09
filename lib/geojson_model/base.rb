@@ -9,6 +9,8 @@ module GeojsonModel
     included do
       include Virtus.model
       include ActiveModel::Serializers::JSON
+
+      alias_method :to_geojson, :to_json
     end
 
     def attributes=(hash)
@@ -20,7 +22,5 @@ module GeojsonModel
     def attributes
       instance_values
     end
-
-    alias_method :to_geojson, :to_json
   end
 end
