@@ -4,7 +4,7 @@ module GeojsonModel
   class Geometry
     include Base
 
-    attribute :type,        String, default: 'Geometry'
+    attribute :type, String
     attribute :coordinates, Array
 
     # @return [Feature]
