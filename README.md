@@ -28,7 +28,7 @@ gc.to_feature_collection # => #<GeojsonModel::FeatureCollection ...>
 fc.to_geometry_collection # => #<GeojsonModel::GeometryCollection ...>
 ```
 
-Plays well with `ActiveRecord` and PostgreSQL json and jsonb data type.
+Plays well with `ActiveRecord`, PostgreSQL jsonb (or json) data type and [geojsonlint](https://github.com/can-explore/geojsonlint).
 
 ```ruby
 # db/migrations/create_places.rb
@@ -38,13 +38,12 @@ end
 
 # models/place.rb
 class Place < ActiveRecord::Base
-  store :geojson, coder: GeojsonModel::Coder
+  validates :geojson, geojson: true
 end
 
 p = Place.new
-p.geojson = GeojsonModel::Feature.new
-p.save
-p.geojson # => #<GeojsonModel::Feature ...>
+p.geojson = GeojsonModel::Feature.new(geometry: GeojsonModel::Geometry.new).to_json
+p.valid? # => true
 ```
 
 ## Installation
