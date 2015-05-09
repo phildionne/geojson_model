@@ -2,7 +2,6 @@
 
 Geojson as a model. Provides simple objects to manipulate geojson data.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Usage
 
