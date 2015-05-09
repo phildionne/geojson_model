@@ -1,8 +1,52 @@
 # GeojsonModel
 
-Geojson as a model.
+Geojson as a model. Provides simple objects to manipulate geojson data.
 
 TODO: Delete this and the text above, and describe your gem
+
+## Usage
+
+```ruby
+g = GeojsonModel::Geometry.new(type: 'Point', coordinates: [0, 0]) # => #<GeojsonModel::Geometry ...>
+g.to_h # => { type: 'Point', coordinates: [0, 0] }
+g.to_json # => "{"type":"Point","coordinates":[0,0]}"
+
+f = GeojsonModel::Feature.new(properties: {foo: 'bar'}, geometry: g) # => #<GeojsonModel::Feature ...>
+f.to_h # => { type:'Feature', geometry:#<GeojsonModel::Geometry ...>, properties:{foo: 'bar'} }
+f.to_json # => "{"type":"Feature","geometry":{"type":"Point","coordinates":[0,0]},"properties":{"foo":"bar"}}"
+
+gc = GeojsonModel::GeometryCollection.new(geometries: [g]) # => #<GeojsonModel::Feature ...>
+gc.to_h # => { type: 'GeometryCollection', geometries: [#<GeojsonModel::Geometry ...>] }
+gc.to_json # => "{"type":"GeometryCollection","geometries":[{"type":"Point","coordinates":[0,0]}]}"
+
+fc = GeojsonModel::FeatureCollection.new(features: [f]) # => #<GeojsonModel::Feature ...>
+fc.to_h # => { type: 'FeatureCollection', features: [#<GeojsonModel::Feature geometry=#<GeojsonModel::Geometry ...> ...>] }
+fc.to_json # => "{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[0,0]},"properties":{"foo":"bar"}}]}"
+
+g.to_feature # => #<GeojsonModel::Feature ...>
+f.to_geometry # => #<GeojsonModel::Geometry ...>
+gc.to_feature_collection # => #<GeojsonModel::FeatureCollection ...>
+fc.to_geometry_collection # => #<GeojsonModel::GeometryCollection ...>
+```
+
+Plays well with `ActiveRecord` and PostgreSQL json and jsonb data type.
+
+```ruby
+# db/migrations/create_places.rb
+create_table :places do |t|
+  t.jsonb :geojson # or t.json :geojson
+end
+
+# models/place.rb
+class Place < ActiveRecord::Base
+  store :geojson, coder: GeojsonModel::Coder
+end
+
+p = Place.new
+p.geojson = GeojsonModel::Feature.new
+p.save
+p.geojson # => #<GeojsonModel::Feature ...>
+```
 
 ## Installation
 
@@ -19,10 +63,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install geojson_model
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Development
 
