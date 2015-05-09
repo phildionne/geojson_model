@@ -7,7 +7,8 @@ describe GeojsonModel::FeatureCollection do
     describe 'type' do
 
       it 'is of type String' do
-        expect(subject.type).to be_a(String)
+        # Workaround to test type
+        expect(GeojsonModel::Geometry.attribute_set[:type].primitive).to eq(String)
       end
 
       it 'is set by default' do
