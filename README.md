@@ -2,6 +2,10 @@
 
 Geojson as a model. Provides simple objects to manipulate geojson data.
 
+[![Gem Version](https://badge.fury.io/rb/geojson_model.png)](http://badge.fury.io/rb/geojson_model)
+[![Code Climate](https://codeclimate.com/github/can-explore/geojson_model/badges/gpa.svg)](https://codeclimate.com/github/can-explore/geojson_model)
+[![Coverage Status](https://coveralls.io/repos/can-explore/geojson_model/badge.svg)](https://coveralls.io/r/can-explore/geojson_model)
+[![Build Status](https://travis-ci.org/can-explore/geojson_model.png)](https://travis-ci.org/can-explore/geojson_model)
 
 ## Usage
 
